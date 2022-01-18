@@ -6,10 +6,10 @@ class NumberOfEvents extends Component {
     return (
       <div className="NumberOfEvents">
         <p>Number of events to display:</p>
-          <input type="number"
-            value={this.props.numberOfEvents}
-            className="number-of-events"
-            onChange={(e) => this.props.updateNumberOfEvents(e)} />
+        <input type="number"
+          value={this.props.numberOfEvents}
+          className="number-of-events"
+          onChange={(e) => this.props.updateNumberOfEvents(e)} />
       </div>
     );
   }
