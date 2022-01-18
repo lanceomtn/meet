@@ -71,7 +71,6 @@ export const getEvents = async () => {
     return result.data.events;
   }
 };
-};
 
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
