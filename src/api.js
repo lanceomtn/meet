@@ -74,14 +74,12 @@ export const getEvents = async () => {
 
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
-}
-
-const tokenCheck = accessToken && (await checkToken(accessToken));
+  const tokenCheck = accessToken && (await checkToken(accessToken));
 
   if (!accessToken || tokenCheck.error) {
-    await localStorage.removeItem("access_token");
+    await localStorage.removeItem('access_token');
     const searchParams = new URLSearchParams(window.location.search);
-    const code = await searchParams.get("code");
+    const code = await searchParams.get('code');
     if (!code) {
       const results = await axios.get(
         "https://sggwog2ltd.execute-api.us-west-1.amazonaws.com/dev/api/get-auth-url"
@@ -92,3 +90,5 @@ const tokenCheck = accessToken && (await checkToken(accessToken));
     return code && getToken(code);
   }
   return accessToken;
+
+};
