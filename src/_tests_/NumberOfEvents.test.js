@@ -8,6 +8,8 @@ describe('<NumberOfEvents /> component', () => {
     NumberOfEventsWrapper = shallow(<NumberOfEvents />);
   });
 
+  const wrapper = shallow(<NumberOfEvents/>);
+  console.log(wrapper.debug());
   test('render text input', () => {
     expect(NumberOfEventsWrapper.find('.number-of-events')).toHaveLength(1);
   });

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+
 
 import EventList from './EventList';
 import CitySearch from './CitySearch';
@@ -29,31 +31,37 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location, eventCount) => {
-    getEvents().then((events) => {
-      const locationEvents =
-        location === "all"
-          ? events
-          : events.filter((event) => event.location === location);
-      if (this.mounted) {
-        this.setState({
-          events: locationEvents.slice(0, this.state.numberOfEvents),
-          currentLocation: location,
-        });
-      }
-    });
-  };
+  updateEvents = async (location, numberOfEvents) => {
+		getEvents().then(events => {
+			const locationEvents =
+				location === 'all'
+					? events
+					: events.filter(event => event.location === location);
+			if (this.mounted) {
+				this.setState({
+					events: locationEvents.slice(0, this.state.numberOfEvents),
+					currentLocation: location,
+				});
+			}
+		});
+	};
 
   render() {
     return (
-      <div className="App">
-        <CitySearch 
-          locations={this.state.locations}
-          updateEvents={this.updateEvents} />
-        <EventList 
-          events={this.state.events}
-          numberOfEvents={this.state.numberOfEvents} />
-      </div>
+      <Container className="app-container" fluid>
+        <Row>
+          <Col>
+            <div className="App">
+              <CitySearch 
+                locations={this.state.locations}
+                updateEvents={this.updateEvents} />
+              <EventList 
+                events={this.state.events}
+                numberOfEvents={this.state.numberOfEvents} />
+            </div>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
